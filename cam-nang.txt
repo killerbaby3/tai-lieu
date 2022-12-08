@@ -1,0 +1,20 @@
+﻿1. crontab -e | sudo /usr/bin/crontab -e (edit)
+2. đến dòng cần thêm/sửa => bấm insert
+3. điền crontab mới
+4. gõ :wq! (ghi và thoát)
+
+#flush dns
+chrome://net-internals/#sockets
+
+180.148.132.132 và 180.148.132.152
+
+ES: elastic | +BfBz2DGAO9fvO+is2LX
+
+---Lệnh để change quyền, câu lệnh bên dưới là change toàn bộ file trong 1 thư mục:
+sudo chown vnex.vnex /data/www/public_restruct/my.vnexpress.net/module/MyVne/view/my-vne/subscription/*
+sudo chmod 0775 /data/www/public_restruct/my.vnexpress.net/module/MyVne/view/my-vne/subscription/*
+
+---Lệnh search gì đó trong crontab:
+sudo /usr/bin/crontab -l | grep -i [cai-gi-do]
+
+APPLICATION_ENV=production ZONE_ENV=hn /build/phpV3/bin/php -c /build/phpV3/etc/php.ini /build/phpV3/lib/php/framework/Fpt/Ams/Server/football-crawler.php standings all
