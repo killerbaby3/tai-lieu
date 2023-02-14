@@ -15,4 +15,4 @@ function debounce(func, wait, immediate) {
 
 $('.vote-by-payment').on('click', debounce(function () {
 	
-}, 250));.
+}, 250));
