@@ -1,4 +1,6 @@
-﻿1. crontab -e | sudo /usr/bin/crontab -e (edit)
+﻿doc gw : https://docs.google.com/spreadsheets/d/1GToB9Igkz0oCk6Qu3-iE897AXaxIXCZKhIwnOmbcJho/edit#gid=0
+
+1. crontab -e | sudo /usr/bin/crontab -e (edit)
 2. đến dòng cần thêm/sửa => bấm insert
 3. điền crontab mới
 4. gõ :wq! (ghi và thoát)
@@ -18,3 +20,14 @@ sudo chmod 0775 /data/www/public_restruct/my.vnexpress.net/module/MyVne/view/my-
 sudo /usr/bin/crontab -l | grep -i [cai-gi-do]
 
 APPLICATION_ENV=production ZONE_ENV=hn /build/phpV3/bin/php -c /build/phpV3/etc/php.ini /build/phpV3/lib/php/framework/Fpt/Ams/Server/football-crawler.php standings all
+
+-- đóng task :))---
+
+setTimeout(function() {
+    $('#action_id_81').click();
+
+    setTimeout(function() {
+        $('#issue-workflow-transition-submit').click();
+        
+    }, 5000);
+}, 25*60000);

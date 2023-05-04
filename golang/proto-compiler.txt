@@ -1,0 +1,5 @@
+//install 
+b1: install protobuf compiler
+plugin protoc-gen: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+compiler protoc: protoc --go_out=. user/user.proto
+compiler protoc grpc : protoc -I="$Env:GOPATH"/pkg/mod -I=D:/git_vne/ams -I="." -I="$Env:GOPATH"/src/github.com/gogo/protobuf/protobuf --gofast_out=plugins=grpc:. object/object.proto
