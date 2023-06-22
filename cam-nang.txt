@@ -19,6 +19,8 @@ sudo chmod 0775 /data/www/public_restruct/my.vnexpress.net/module/MyVne/view/my-
 ---Lệnh search gì đó trong crontab:
 sudo /usr/bin/crontab -l | grep -i [cai-gi-do]
 
+tìm lỗi PHP trên server: find "/data/www/public_restruct/vnexpress.net/application" -iname '*.php' -exec /build/phpV7/bin/php -l '{}' \; | grep '^No syntax errors' -v  | less
+
 APPLICATION_ENV=production ZONE_ENV=hn /build/phpV3/bin/php -c /build/phpV3/etc/php.ini /build/phpV3/lib/php/framework/Fpt/Ams/Server/football-crawler.php standings all
 
 -- đóng task :))---
