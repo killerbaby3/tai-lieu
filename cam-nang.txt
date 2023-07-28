@@ -23,6 +23,9 @@ tìm lỗi PHP trên server: find "/data/www/public_restruct/vnexpress.net/appli
 
 APPLICATION_ENV=production ZONE_ENV=hn /build/phpV3/bin/php -c /build/phpV3/etc/php.ini /build/phpV3/lib/php/framework/Fpt/Ams/Server/football-crawler.php standings all
 
+--remove file
+sudo rm -rf path/file
+
 -- đóng task :))---
 
 setTimeout(function() {
@@ -33,3 +36,7 @@ setTimeout(function() {
         
     }, 5000);
 }, 25*60000);
+
+netstat -a -n -o | find "27017"
+
+taskkill /pid 3712 /f
