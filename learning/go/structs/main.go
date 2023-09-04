@@ -12,7 +12,7 @@ type person struct {
 	lastName  string
 	contactInfo
 }
-
+ 
 func main() {
 	jim := person{
 		firstName:"Thanh",
