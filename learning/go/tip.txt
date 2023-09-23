@@ -1,0 +1,1 @@
+value types use pointer: int, float, string, bool, struct
