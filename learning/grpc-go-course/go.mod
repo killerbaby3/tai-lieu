@@ -1,6 +1,6 @@
 module grpc-go-course
 
-go 1.21.2
+go 1.19
 
 require (
 	github.com/golang/protobuf v1.5.3

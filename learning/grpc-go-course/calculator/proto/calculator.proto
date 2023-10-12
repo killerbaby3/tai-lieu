@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "./calculator/proto";
+
+message SumRequest{
+    int32 first_number = 1;
+    int32 second_number = 2;
+}
+
+message SumResponse{
+    int32 result = 1;
+}
+
+
+message PrimeRequest{
+    int64 number = 1;
+}
+
+message PrimeResponse{
+    int64 result = 1;
+}
+
+service CalculatorService{
+    rpc Sum(SumRequest) returns (SumResponse);
+    rpc Primes(PrimeRequest) returns (stream PrimeResponse);
+}

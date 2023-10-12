@@ -128,18 +128,20 @@ func init() {
 func init() { proto.RegisterFile("greet/proto/greet.proto", fileDescriptor_4cc3401bebadabd3) }
 
 var fileDescriptor_4cc3401bebadabd3 = []byte{
-	// 174 bytes of a gzipped FileDescriptorProto
+	// 194 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4f, 0x2f, 0x4a, 0x4d,
 	0x2d, 0xd1, 0x2f, 0x28, 0xca, 0x2f, 0xc9, 0xd7, 0x07, 0xb3, 0xf5, 0xc0, 0x6c, 0x21, 0x56, 0x30,
 	0x47, 0x49, 0x97, 0x8b, 0xc7, 0x1d, 0xc4, 0x08, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x92,
 	0xe5, 0xe2, 0x4a, 0xcb, 0x2c, 0x2a, 0x2e, 0x89, 0xcf, 0x4b, 0xcc, 0x4d, 0x95, 0x60, 0x54, 0x60,
 	0xd4, 0xe0, 0x0c, 0xe2, 0x04, 0x8b, 0xf8, 0x25, 0xe6, 0xa6, 0x2a, 0xa9, 0x73, 0xf1, 0x42, 0x95,
 	0x17, 0x17, 0xe4, 0xe7, 0x15, 0xa7, 0x0a, 0x89, 0x71, 0xb1, 0x15, 0xa5, 0x16, 0x97, 0xe6, 0x94,
-	0x40, 0xd5, 0x42, 0x79, 0x46, 0x4e, 0x50, 0x73, 0x83, 0x53, 0x8b, 0xca, 0x32, 0x93, 0x53, 0x85,
-	0x8c, 0xb8, 0x58, 0xc1, 0x7c, 0x21, 0x61, 0x3d, 0x88, 0x2b, 0x90, 0x6d, 0x95, 0x12, 0x41, 0x15,
-	0x84, 0x98, 0xed, 0x24, 0x7f, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9,
-	0x31, 0xce, 0x78, 0x2c, 0xc7, 0x10, 0xc5, 0xab, 0xa7, 0x8f, 0xe4, 0x9f, 0x24, 0x36, 0x30, 0x65,
-	0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x9d, 0xfe, 0x0f, 0xa2, 0xe5, 0x00, 0x00, 0x00,
+	0x40, 0xd5, 0x42, 0x79, 0x46, 0x8d, 0x8c, 0x50, 0x83, 0x83, 0x53, 0x8b, 0xca, 0x32, 0x93, 0x53,
+	0x85, 0x8c, 0xb8, 0x58, 0xc1, 0x7c, 0x21, 0x61, 0x3d, 0x88, 0x33, 0x90, 0xad, 0x95, 0x12, 0x41,
+	0x15, 0x84, 0x1a, 0x6e, 0xcb, 0xc5, 0x07, 0x16, 0xf0, 0x4d, 0xcc, 0xab, 0x0c, 0xc9, 0xcc, 0x4d,
+	0x2d, 0x26, 0x41, 0xb3, 0x01, 0xa3, 0x93, 0xfc, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31,
+	0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe3, 0xb1, 0x1c, 0x43, 0x14, 0xaf, 0x9e, 0x3e, 0x52, 0x78, 0x24,
+	0xb1, 0x81, 0x29, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0x38, 0x99, 0xb1, 0xc9, 0x25, 0x01,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -155,6 +157,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GreetServiceClient interface {
 	Greet(ctx context.Context, in *GreetRequest, opts ...grpc.CallOption) (*GreetResponse, error)
+	GreetManyTimes(ctx context.Context, in *GreetRequest, opts ...grpc.CallOption) (GreetService_GreetManyTimesClient, error)
 }
 
 type greetServiceClient struct {
@@ -174,9 +177,42 @@ func (c *greetServiceClient) Greet(ctx context.Context, in *GreetRequest, opts .
 	return out, nil
 }
 
+func (c *greetServiceClient) GreetManyTimes(ctx context.Context, in *GreetRequest, opts ...grpc.CallOption) (GreetService_GreetManyTimesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_GreetService_serviceDesc.Streams[0], "/greet.GreetService/GreetManyTimes", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &greetServiceGreetManyTimesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type GreetService_GreetManyTimesClient interface {
+	Recv() (*GreetResponse, error)
+	grpc.ClientStream
+}
+
+type greetServiceGreetManyTimesClient struct {
+	grpc.ClientStream
+}
+
+func (x *greetServiceGreetManyTimesClient) Recv() (*GreetResponse, error) {
+	m := new(GreetResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // GreetServiceServer is the server API for GreetService service.
 type GreetServiceServer interface {
 	Greet(context.Context, *GreetRequest) (*GreetResponse, error)
+	GreetManyTimes(*GreetRequest, GreetService_GreetManyTimesServer) error
 }
 
 // UnimplementedGreetServiceServer can be embedded to have forward compatible implementations.
@@ -185,6 +221,9 @@ type UnimplementedGreetServiceServer struct {
 
 func (*UnimplementedGreetServiceServer) Greet(ctx context.Context, req *GreetRequest) (*GreetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Greet not implemented")
+}
+func (*UnimplementedGreetServiceServer) GreetManyTimes(req *GreetRequest, srv GreetService_GreetManyTimesServer) error {
+	return status.Errorf(codes.Unimplemented, "method GreetManyTimes not implemented")
 }
 
 func RegisterGreetServiceServer(s *grpc.Server, srv GreetServiceServer) {
@@ -209,6 +248,27 @@ func _GreetService_Greet_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GreetService_GreetManyTimes_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GreetRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(GreetServiceServer).GreetManyTimes(m, &greetServiceGreetManyTimesServer{stream})
+}
+
+type GreetService_GreetManyTimesServer interface {
+	Send(*GreetResponse) error
+	grpc.ServerStream
+}
+
+type greetServiceGreetManyTimesServer struct {
+	grpc.ServerStream
+}
+
+func (x *greetServiceGreetManyTimesServer) Send(m *GreetResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _GreetService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "greet.GreetService",
 	HandlerType: (*GreetServiceServer)(nil),
@@ -218,7 +278,13 @@ var _GreetService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _GreetService_Greet_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GreetManyTimes",
+			Handler:       _GreetService_GreetManyTimes_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "greet/proto/greet.proto",
 }
 

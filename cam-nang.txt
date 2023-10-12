@@ -17,7 +17,7 @@ sudo chown vnex.vnex /data/www/public_restruct/my.vnexpress.net/module/MyVne/vie
 sudo chmod 0775 /data/www/public_restruct/my.vnexpress.net/module/MyVne/view/my-vne/subscription/*
 
 ---Lệnh search gì đó trong crontab:
-sudo /usr/bin/crontab -l | grep -i [cai-gi-do]
+sudo /usr/bin/crontab -l | grep [cai-gi-do]
 
 tìm lỗi PHP trên server: find "/data/www/public_restruct/vnexpress.net/application" -iname '*.php' -exec /build/phpV7/bin/php -l '{}' \; | grep '^No syntax errors' -v  | less
 
@@ -40,3 +40,5 @@ setTimeout(function() {
 netstat -a -n -o | find "27017"
 
 taskkill /pid 3712 /f
+
+/build/redis-3.0.4/sbin/redis-cli -h 111.65.242.195 -p 6419

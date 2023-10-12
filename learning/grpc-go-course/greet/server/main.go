@@ -18,7 +18,7 @@ type Server struct {
 func main() {
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
-		log.Fatalf("Failed------------------", err)
+		log.Fatalf("Failed------------------%v\n", err)
 	}
 	log.Printf("Listen on %s\n", addr)
 
