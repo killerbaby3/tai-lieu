@@ -3,9 +3,7 @@ module grpc-go-course
 go 1.19
 
 require (
-	github.com/dhowden/tag v0.0.0-20230630033851-978a0926ee25
-	github.com/go-audio/audio v1.0.0
-	github.com/go-audio/wav v1.1.0
+	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.5.3
 	go.mongodb.org/mongo-driver v1.12.1
 	google.golang.org/grpc v1.58.3
@@ -13,8 +11,6 @@ require (
 )
 
 require (
-	github.com/go-audio/riff v1.0.0 // indirect
-	github.com/go-resty/resty/v2 v2.10.0 // indirect
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
