@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Đường dẫn tới php.exe của
+php_path="C:/xampp/php/php.exe"
+
+# Lấy danh sách các file PHP và PHTML được thay đổi
+changed_files=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.php$|\.phtml$")
+
+# Kiểm tra cú pháp PHP cho từng file
+for file in $changed_files; do
+    "$php_path" -l "$file"
+    if [ $? -ne 0 ]; then
+        echo "Error: PHP syntax check failed for file $file"
+        exit 1
+    fi
+done
+
+exit 0
