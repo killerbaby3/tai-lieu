@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package location;
+
+// option go_package = "./location/proto";
+
+// import "services/protobuf/empty/empty.proto";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+message LocationDetail {
+    int32 location_id = 1 [(gogoproto.jsontag)  = "location_id,omitempty",(gogoproto.moretags) = "bson:\"_id\",omitempty"];
+    string location_name = 2 [(gogoproto.jsontag)  = "location_name,omitempty",(gogoproto.moretags) = "bson:\"original_name\",omitempty"];
+    int32 ParentID = 3 [(gogoproto.jsontag)  = "parent_id,omitempty",(gogoproto.moretags) = "bson:\"parent_id\",omitempty"]; 
+}
+
+message ListLocation{
+    repeated LocationDetail ListLocation = 1 [(gogoproto.jsontag)  = "data,omitempty"];
+}
+
+message LocationByParent{
+    map<int32,ListLocation> LocationMap = 1;
+}
+message GetByParentIdRequest{
+    repeated int32 ParentIDs = 1; 
+}
+
+message GetByParentIdResponse{
+    LocationByParent Data = 1;
+}
+
+service LocationService {
+    rpc GetByParentId (GetByParentIdRequest) returns (GetByParentIdResponse);
+}

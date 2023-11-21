@@ -42,3 +42,5 @@ netstat -a -n -o | find "27017"
 taskkill /pid 3712 /f
 
 /build/redis-3.0.4/sbin/redis-cli -h 111.65.242.195 -p 6419
+
+https://github.com/massgravel/Microsoft-Activation-Scripts/releases
