@@ -1,0 +1,9 @@
+docker run --expose 3000 -p 3000:3000 --name=container-next-dev --rm -d -v .:/app next-dev
+
+docker run --add-host localhost:127.0.0.1 -d -p 50051:50051 --name c-football-server football-server
+
+docker run -p 27021:27017 -v mongo_volume:/data/db --name c-mongo -d --network go-app mongo
+
+docker run -p 50052:50052 --name c-log-server --network go-app -d -e APP_ENV="production" --env-file .env.production log-server
+
+docker run -p 50064:50064 --name c-notify-service -v .\cmd\notify\logs:/logs -d notify-service

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package location;
+
+message LocationDetail {
+    int32 location_id = 1;
+    string location_name = 2 ;
+    int32 ParentID = 3 ; 
+}
+
+message ListLocation{
+    repeated LocationDetail ListLocation = 1;
+}
+
+message LocationByParent{
+    map<int32,ListLocation> LocationMap = 1;
+}
+message GetByParentIdRequest{
+    repeated int32 ParentIDs = 1; 
+}
+
+message GetByParentIdResponse{
+    LocationByParent Data = 1;
+}
+
+service LocationService {
+    rpc GetByParentId (GetByParentIdRequest) returns (GetByParentIdResponse);
+}

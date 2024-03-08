@@ -1,0 +1,21 @@
+1.
+- telnet {ip_server} {port}
+- sau đó dùng lệnh "status" để xem
+
+2. dùng lệnh sau để kiểm tra theo key | prefix_key
+(echo status; sleep 0.1) | nc {ip_server} {port} | grep {key|prefix_key}
+
+3. dùng lệnh sau để xóa queue gearman
+/build/gearmand/bin/gearman -w -h {ip_server} -p {port} -I -n -f myvne_like_comment
+
+lệnh xóa key redis: => chỉ chạy được trên server có cài lib như .89
+/build/redis-3.0.4/sbin/redis-cli -h 180.148.142.106 -p 6420 keys user_detail_by_user_id | xargs /build/redis-3.0.4/sbin/redis-cli -h 180.148.142.106 -p 6420 del
+===> user_detail_by_user_id ---> xóa các key có đoạn giữa chứa cụm text "user_detail_by_user_id"
+
+/build/redis-3.0.4/sbin/redis-cli -h 180.148.142.106 -p 6420 keys *user_detail_by_user_id* | xargs /build/redis-3.0.4/sbin/redis-cli -h 180.148.142.106 -p 6420 del
+
+read log:
+tail -n 2000000 /data/www/logs/buford-push.log | grep "2016/09/07 11:" | grep -v "ERR" | awk '{print $7}' | grep -v null | wc -l
+
+find old files + delete
+find . -type f -name '*.log' -mtime +30 -exec sudo rm {} \;

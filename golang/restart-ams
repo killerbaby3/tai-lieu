@@ -1,0 +1,1 @@
+cd /data/www/public_html/ams.vnexpress.net/src/services && sudo /bin/sh cmd/service.sh restart
