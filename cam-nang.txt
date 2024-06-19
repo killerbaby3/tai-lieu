@@ -44,3 +44,5 @@ taskkill /pid 3712 /f
 /build/redis-3.0.4/sbin/redis-cli -h 111.65.242.195 -p 6419
 
 https://github.com/massgravel/Microsoft-Activation-Scripts/releases
+
+export putty file => mở powershell, chạy : reg export HKCU\Software\SimonTatham ("D:\backup-win\putty-export.reg")
