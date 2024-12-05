@@ -1,0 +1,3 @@
+- save-image-upload: $env:APP_BACKGROUND="true";$env:APP_ENV="development"; go run .\service.go
+- upload, resize: $env:APP_ENV="development"; go run ./service.go
+- build file run in linux: $env:GOOS="linux"; go build -o main .\main.go

@@ -7,3 +7,5 @@ docker run -p 27021:27017 -v mongo_volume:/data/db --name c-mongo -d --network g
 docker run -p 50052:50052 --name c-log-server --network go-app -d -e APP_ENV="production" --env-file .env.production log-server
 
 docker run -p 50064:50064 --name c-notify-service -v .\cmd\notify\logs:/logs -d notify-service
+
+docker run --expose 3000 -p 3000:3000 --name=c-usi-dev --rm -v .:/data/www/public_html/cloud_usi-saas.vnexpress.net usi-dev
