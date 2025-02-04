@@ -7,7 +7,7 @@ pipeline {
                 cleanWs()
                 echo 'Building a new laptop ...'
                 sh 'mkdir -p build'
-                sh 'touch build/tailieu.txt'
+                sh 'touch build/tailieu.txt' 
                 sh 'echo "Mainboard" >> build/tailieu.txt'
                 sh 'cat build/tailieu.txt'
                 sh 'echo "Display" >> build/tailieu.txt'
