@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                cleanWs()
+                echo 'Building a new laptop ...'
+                sh 'mkdir -p build'
+                sh 'touch build/tailieu.txt'
+                sh 'echo "Mainboard" >> build/tailieu.txt'
+                sh 'cat build/tailieu.txt'
+                sh 'echo "Display" >> build/tailieu.txt'
+                sh 'cat build/tailieu.txt'
+                sh 'echo "Keyboard" >> build/tailieu.txt'
+                sh 'cat build/tailieu.txt'
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'build/**'
+        }
+    }
+}
