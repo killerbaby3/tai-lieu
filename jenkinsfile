@@ -3,7 +3,7 @@ pipeline {
   
     stages { 
         stage('Build') {
-            steps {     
+            steps {        
                 cleanWs()
                 echo 'Building a new laptop ...'
                 sh 'mkdir -p build'
