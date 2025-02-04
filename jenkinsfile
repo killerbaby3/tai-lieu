@@ -14,7 +14,7 @@ pipeline {
                 sh 'cat build/tailieu.txt'
                 sh 'echo "Keyboard" >> build/tailieu.txt'
                 sh 'cat build/tailieu.txt'
-            }
+            } 
         }
     }
 
