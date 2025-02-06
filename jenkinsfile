@@ -1,20 +1,22 @@
 pipeline {
-    agent any 
-    
-    stages { 
+    agent any
+
+    stages {
         stage('Build') {
-            steps {        
+            steps {
                 cleanWs()
                 echo 'Building a new laptop ...'
-                sh 'mkdir -p build'
-                sh 'touch build/tailieu.txt' 
-                sh 'echo "Mainboard" >> build/tailieu.txt'
-                sh 'cat build/tailieu.txt'
-                sh 'echo "Display" >> build/tailieu.txt'
-                sh 'cat build/tailieu.txt'
-                sh 'echo "Keyboard" >> build/tailieu.txt'
-                sh 'cat build/tailieu.txt'
-            } 
+                sh '''
+                    mkdir -p build
+                    touch build/computer.txt
+                    echo "Mainboard" >> build/computer.txt
+                    cat build/computer.txt
+                    echo "Display" >> build/computer.txt
+                    cat build/computer.txt
+                    echo "Keyboard" >> build/computer.txt
+                    cat build/computer.txt
+                '''
+            }
         }
     }
 
@@ -23,5 +25,4 @@ pipeline {
             archiveArtifacts artifacts: 'build/**'
         }
     }
-}    
-      
+}
