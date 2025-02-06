@@ -5,7 +5,7 @@ pipeline {
         BUILD_FILE_NAME = 'laptop.txt'
     }
 
-    stages {
+    stages { 
         stage('Build') {
             steps {
                 cleanWs()
