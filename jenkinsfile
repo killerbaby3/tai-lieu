@@ -15,7 +15,14 @@ pipeline {
                     cat build/computer.txt
                     echo "Keyboard" >> build/computer.txt
                     cat build/computer.txt
+                    rm build/computer.txt
                 '''
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing the new laptop ...'
+                sh 'test -f build/computer.txt'
             }
         }
     }
