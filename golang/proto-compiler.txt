@@ -1,8 +1,10 @@
 //install 
+
 b1: install protobuf compiler
 - go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 - go install github.com/gogo/protobuf/protoc-gen-gofast@latest
-compiler protoc: protoc --go_out=. user/user.proto
+
+
 compiler protoc grpc :
 1/ protoc -I="$Env:GOPATH"/pkg/mod -I=D:/git_vne/ams -I="." -I="$Env:GOPATH"/src/github.com/gogo/protobuf/protobuf --gofast_out=plugins=grpc:. object/object.proto
 2/ protoc -I="$Env:GOPATH"/pkg/mod -I=D:/tai-lieu/learning/grpc-go-course/greet -I="." -I="$Env:GOPATH"/src/github.com/gogo/protobuf/protobuf --gofast_out=plugins=grpc:. proto/greet.proto

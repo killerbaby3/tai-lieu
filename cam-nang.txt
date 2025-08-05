@@ -46,3 +46,6 @@ taskkill /pid 3712 /f
 https://github.com/massgravel/Microsoft-Activation-Scripts/releases
 
 export putty file => mở powershell, chạy : reg export HKCU\Software\SimonTatham ("D:\backup-win\putty-export.reg")
+
+// copy local file to ssh server
+scp -i <identity_file> -r <src_file> <user>@<server>:<dest_file>
