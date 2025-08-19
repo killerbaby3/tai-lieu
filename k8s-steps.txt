@@ -23,3 +23,11 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --
 sudo apt update -y
 sudo apt install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
+
+------k8s-master-1
+sudo kubeadm init
+
+kubeadm join 192.168.1.111:6443 --token 0j4jzb.0q9spv8du33wspfn \
+	--discovery-token-ca-cert-hash sha256:607797a965bc515937d6800ad7120c6503dcae4ebb39bd9c2a508c511ebda24f
+
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/calico.yaml

@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "label": "LƯU Ý",
+      "skip": true
+    },
+    {
+      "label": "CẤP ĐỘ THI - LỆ PHÍ THI",
+      "questions": [
+        { "text": "Cấp độ thi - Lệ phí thi", "answer": "HSK 5" }
+      ]
+    },
+    {
+      "label": "THÔNG TIN CÁ NHÂN",
+      "questions": [
+        { "text": "Họ và tên", "answer": "Nguyen Van A" },
+        { "text": "Loại giấy tờ tùy thân", "answer": "CCCD" },
+        { "text": "Số CMND - CCCD, số hộ chiếu", "answer": "0123456789" }
+      ]
+    }
+  ]
+}
