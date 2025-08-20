@@ -7,16 +7,66 @@
     {
       "label": "CẤP ĐỘ THI - LỆ PHÍ THI",
       "questions": [
-        { "text": "Cấp độ thi - Lệ phí thi", "answer": "HSK 5" }
+        {
+          "text": "cấp độ thi - lệ phí thi",
+          "answer": "HSK 5"
+        }
       ]
     },
     {
       "label": "THÔNG TIN CÁ NHÂN",
       "questions": [
-        { "text": "Họ và tên", "answer": "Nguyen Van A" },
-        { "text": "Loại giấy tờ tùy thân", "answer": "CCCD" },
-        { "text": "Số CMND - CCCD, số hộ chiếu", "answer": "0123456789" }
+        {
+          "text": "họ và tên",
+          "answer": "Nguyen Van A"
+        },
+        {
+          "text": "loại giấy tờ tùy thân",
+          "answer": "CCCD"
+        },
+        {
+          "text": "số cmnd - cccd, số hộ chiếu",
+          "answer": "0123456789"
+        },
+        {
+          "text": "giới tính",
+          "answer": "Nữ"
+        },
+        {
+          "text": "số điện thoại",
+          "answer": "0987654321"
+        },
+        {
+          "text": "ngày sinh",
+          "answer": "7"
+        },
+        {
+          "text": "tháng sinh",
+          "answer": "3"
+        },
+        {
+          "text": "năm sinh",
+          "answer": "2001"
+        },
+        {
+          "text": "quốc tịch",
+          "answer": "Việt Nam"
+        }
       ]
+    },
+    {
+      "label": "QUÁ TRÌNH HỌC TIẾNG TRUNG",
+      "skip": true
+    },
+    {
+      "label": "CÂU HỎI XÁC THỰC",
+      "questions": [
+        {
+          "text": "phép tính",
+          "answer": 0
+        }
+      ],
+      "authen": true
     }
   ]
 }

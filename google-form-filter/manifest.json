@@ -3,7 +3,11 @@
   "name": "Google Form Auto Filler",
   "version": "1.0",
   "description": "Tự động điền Google Form theo file options.json",
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage", "scripting", "activeTab"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Google Form FastFill"
+  },
   "host_permissions": [
     "https://docs.google.com/forms/*",
     "https://forms.gle/*"
