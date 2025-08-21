@@ -20,10 +20,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     for (const el of allPage) {
       const label = el.querySelector(".label input").value.trim();
       const skip = el.querySelector(".skip input").checked;
+      let questions = [];
       const wrapQuestions = el.querySelector(".questions");
-      console.log(32323232, wrapQuestions);
+      const allQuestions = wrapQuestions.querySelectorAll(".block-q");
 
-      arrConfig.push({ label, skip, questions: [] });
+      if (allQuestions.length > 0) {
+        for (const qEl of allQuestions) {
+          const text = qEl.querySelector(".text input").value.trim();
+          const answer = qEl.querySelector(".answer input").value.trim();
+          if (text) {
+            questions.push({ text, answer });
+          }
+        }
+      }
+
+      arrConfig.push({ label, skip, questions });
     }
     config.pages = arrConfig;
     await chrome.storage.local.set({ config });
@@ -39,13 +50,14 @@ function renderPages() {
     pageDiv.className = "page";
 
     pageDiv.innerHTML = `
-      <label class="label">Trang: <input type="text" value="${page.label}" 
-        onchange="updatePageLabel(${pIndex}, this.value)"></label>
+      <label class="label">Trang: <input type="text" value="${
+        page.label
+      }" /></label>
       <br>
       <label class="skip">Skip: <input type="checkbox" ${
         page.skip ? "checked" : ""
       } 
-        onchange="toggleSkip(${pIndex}, this.checked)"></label>
+        /></label>
       <br>
       <button class="delete-page-${pIndex}" page-idx="${pIndex}">🗑 Xoá trang</button>
       <div class="questions" id="questions-${pIndex}"></div>
@@ -62,6 +74,12 @@ function renderPages() {
       .addEventListener("click", () => {
         deletePage(pIndex);
       });
+    pageDiv.querySelector(".label input").addEventListener("change", (e) => {
+      updatePageLabel(pIndex, e.target.value);
+    });
+    pageDiv.querySelector(".skip input").addEventListener("change", (e) => {
+      toggleSkip(pIndex, e.target.checked);
+    });
   });
 }
 
@@ -73,11 +91,9 @@ function renderQuestions(pIndex) {
     const qDiv = document.createElement("div");
     qDiv.classList = "block-q";
     qDiv.innerHTML = `
-      <label class="text">Text: <input type="text" value="${q.text}" 
-        onchange="updateQuestionText(${pIndex}, ${qIndex}, this.value)"></label>
+      <label class="text">Text: <input type="text" value="${q.text}" /></label>
       <br>
-      <label class="answer">Answer: <input type="text" value="${q.answer}" 
-        onchange="updateQuestionAnswer(${pIndex}, ${qIndex}, this.value)"></label>
+      <label class="answer">Answer: <input type="text" value="${q.answer}" /></label>
       <button class="delete-q-${qIndex}-${pIndex}"">🗑 Xoá câu hỏi</button>
       <hr>
     `;
@@ -87,6 +103,13 @@ function renderQuestions(pIndex) {
       .addEventListener("click", () => {
         deleteQuestion(pIndex, qIndex);
       });
+
+    qDiv.querySelector(".text input").addEventListener("change", (e) => {
+      updateQuestionText(pIndex, qIndex, e.target.value);
+    });
+    qDiv.querySelector(".answer input").addEventListener("change", (e) => {
+      updateQuestionAnswer(pIndex, qIndex, e.target.value);
+    });
   });
 }
 

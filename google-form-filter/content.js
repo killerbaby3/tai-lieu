@@ -62,7 +62,9 @@ function fillForm(config) {
     }
     return;
   } else {
-    pageConfig = config.pages.find((p) => pageTitle.includes(p.label));
+    pageConfig = config.pages.find((p) =>
+      pageTitle.toLowerCase().includes(p.label.toLowerCase())
+    );
   }
 
   if (!pageConfig) {
