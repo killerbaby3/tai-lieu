@@ -85,7 +85,11 @@ function fillForm(config) {
     pageConfig.questions.forEach((q) => {
       let questionEl = Array.from(
         document.querySelectorAll("div[role='listitem']")
-      ).find((el) => el.innerText.toLowerCase().includes(q.text));
+      ).find((el) => {
+        if (el.innerText.toLowerCase().includes(q.text.toLowerCase())) {
+          return el;
+        }
+      });
       if (!questionEl) {
         console.log("⚠️ Question not found:", q.text);
         return;
@@ -93,6 +97,7 @@ function fillForm(config) {
 
       // Input text
       const input = questionEl.querySelector("input[type='text']");
+
       if (input) {
         if (pageConfig.authen) {
           nextBtn = document.querySelector(
@@ -118,7 +123,7 @@ function fillForm(config) {
 
       if (radioLabels.length) {
         const option = Array.from(radioLabels).find((el) =>
-          el.innerText.includes(q.answer)
+          el.innerText.toLowerCase().includes(q.answer.toLowerCase())
         );
         if (option) {
           option.click();

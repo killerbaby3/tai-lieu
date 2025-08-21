@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     for (const el of allPage) {
       const label = el.querySelector(".label input").value.trim();
       const skip = el.querySelector(".skip input").checked;
+      const authen = el.querySelector(".authen input").checked;
       let questions = [];
       const wrapQuestions = el.querySelector(".questions");
       const allQuestions = wrapQuestions.querySelectorAll(".block-q");
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       }
 
-      arrConfig.push({ label, skip, questions });
+      arrConfig.push({ label, skip, questions, authen });
     }
     config.pages = arrConfig;
     await chrome.storage.local.set({ config });
@@ -59,6 +60,11 @@ function renderPages() {
       } 
         /></label>
       <br>
+      <label class="authen">Authen: <input type="checkbox" ${
+        page.authen ? "checked" : ""
+      } 
+        /></label>
+      <br>
       <button class="delete-page-${pIndex}" page-idx="${pIndex}">🗑 Xoá trang</button>
       <div class="questions" id="questions-${pIndex}"></div>
       <button class="add-q-${pIndex}" page-idx="${pIndex}">➕ Thêm câu hỏi</button>
@@ -79,6 +85,9 @@ function renderPages() {
     });
     pageDiv.querySelector(".skip input").addEventListener("change", (e) => {
       toggleSkip(pIndex, e.target.checked);
+    });
+    pageDiv.querySelector(".authen input").addEventListener("change", (e) => {
+      toggleAuthen(pIndex, e.target.checked);
     });
   });
 }
@@ -120,6 +129,11 @@ function updatePageLabel(pIndex, value) {
 function toggleSkip(pIndex, value) {
   config.pages[pIndex].skip = value;
 }
+
+function toggleAuthen(pIndex, value) {
+  config.pages[pIndex].authen = value;
+}
+
 function deletePage(pIndex) {
   config.pages.splice(pIndex, 1);
   renderPages();
