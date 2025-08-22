@@ -84,7 +84,7 @@ function fillForm(config) {
   if (pageConfig.questions) {
     pageConfig.questions.forEach((q) => {
       let questionEl = Array.from(
-        document.querySelectorAll("div[role='listitem']")
+        document.querySelectorAll("[data-params]")
       ).find((el) => {
         if (el.innerText.toLowerCase().includes(q.text.toLowerCase())) {
           return el;
@@ -117,7 +117,7 @@ function fillForm(config) {
       }
 
       // Radio button
-      const radioLabels = document.querySelectorAll(
+      const radioLabels = questionEl.querySelectorAll(
         "[jsname='wCJL8'] [dir='auto']"
       );
 
