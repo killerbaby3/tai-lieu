@@ -41,6 +41,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     await chrome.storage.local.set({ config });
     alert("✅ Đã lưu cấu hình");
   });
+
+  document.getElementById("delConfig").addEventListener("click", async () => {
+    config.pages = [];
+    await chrome.storage.local.set({ config });
+    alert("✅ Đã xóa cấu hình");
+    renderPages();
+  });
 });
 
 function renderPages() {
