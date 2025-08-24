@@ -31,3 +31,8 @@ kubeadm join 192.168.1.111:6443 --token 0j4jzb.0q9spv8du33wspfn \
 	--discovery-token-ca-cert-hash sha256:607797a965bc515937d6800ad7120c6503dcae4ebb39bd9c2a508c511ebda24f
 
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/calico.yaml
+
+--- dọn dẹp cụm k8s ---
+sudo kubeadm reset -f (xoá master)
+sudo rm -rf /var/lib/etcd
+sudo rm -rf /etc/kubernetes/manifests/*
